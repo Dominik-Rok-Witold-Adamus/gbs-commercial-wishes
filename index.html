@@ -1,0 +1,539 @@
+
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Merry Christmas from GBS Commercial</title>
+  <style>
+    /* Reset i centrowanie */
+  body {
+      height: 100%;
+      margin: 0;
+      background: #0f172a; /* ciemne tło dla kontrastu */
+      font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, "Helvetica Neue", Arial, sans-serif;
+      color: #e2e8f0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100vh;
+      perspective: 1000px;
+      transform-style: preserve-3d;
+    }
+    .wrap img {
+            max-width: 100%;
+        }
+
+        *,
+        *::after,
+        *::before {
+            box-sizing: border-box;
+        }
+
+        /* Nagłówek */
+        h2 {
+            font-family: 'Dancing Script', serif;
+            font-weight: normal;
+            font-size: 38px;
+            color: #b59f6e;
+            text-align: center;
+        }
+
+        /* Opakowanie */
+        .wrap {
+            top: -1000px;
+            position: absolute;
+            transform: rotateX(35deg);
+            transform-style: preserve-3d;
+            box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+            transition: top 1.5s;
+                aspect-ratio: 0.72;
+        max-height: 530px;
+    max-width: 530px;
+        }
+        .wrap_visible{
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -63%) rotateX(35deg);
+        }
+
+        /* Karta */
+        .card {
+            height: 100%;
+            width: 100%;
+            background-color: #18243f;
+            border-radius: 2px;
+            position: relative;
+            border: 8px solid #B8860B;
+            text-align: center;
+        }
+
+        /* Przód karty */
+        .card--front {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+            transform-origin: center left;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+        }
+        .card--front:not(.back) {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          transition: all 1.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+          transform-origin: center left;
+          position: absolute;
+          top: 0;
+          left: 0;
+          z-index: 2;
+          backface-visibility: hidden;
+          -webkit-backface-visibility: hidden;
+          background-image: url("merry_christmas.png");
+          background-position: 0;
+          background-size: cover;
+          background-repeat: no-repeat;
+      }
+
+      .card.card--inner, .card.card--front.back{
+          background-image: url("inner.png");
+          background-position: 0;
+          background-size: cover;
+          background-repeat: no-repeat;
+      }
+
+        /* Przód karty w stanie 'open' (otwarte) */
+        .card--front.open {
+            transform: rotateY(-180deg);
+        }
+
+        /* Tył przodu karty – umożliwia widoczność tylnej strony */
+        .card--front.back {
+            z-index: 0;
+            backface-visibility: visible;
+            -webkit-backface-visibility: visible;
+                box-shadow: #000000dd 6px 10px 20px;
+        }
+
+        /* Wnętrze karty */
+        .card--inner {
+            overflow: hidden;
+            padding: 15px;
+            position: relative;
+            /* potrzebne dla pseudo-elementu :before */
+                box-shadow: #000000dd 6px 10px 20px;
+                display: flex;
+    align-items: center;
+    justify-content: center;
+        }
+
+        /* Nagłówek wewnątrz karty */
+        .card--inner h2 {
+          width: 70%;
+          font-size: 16px;
+          text-align: left;
+        }
+
+        /* Obraz wewnątrz karty */
+        .card--inner img {
+            max-width: 60%;
+            margin-top: 1.5em;
+        }
+
+        /* Warstwa przy stanie 'open' */
+        .card--inner.open::before {
+            transform: translateX(-155%);
+            opacity: 0.1;
+        }
+
+        /* Nakładka przyciemniająca wewnątrz karty */
+        .card--inner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.3);
+            z-index: 1;
+            opacity: 1;
+            transition: all 1s ease-in-out;
+        }
+
+        /* Przycisk */
+        .wrap button {
+            -webkit-appearance: none;
+            border: none;
+            
+           padding: 10px 20px 30px;
+            text-align: center;
+            display: block;
+            transform: translate(-50%, 0) rotateX(10deg);
+            margin-top: 20px;
+            box-shadow: 0 4px 2px rgba(0, 0, 0, 0.3);
+            cursor: pointer;
+             position: absolute;
+            max-width: 250px;
+            bottom: -120px;
+            left: 50%;
+            transform: translate(-50%, 0);
+            font-weight: bold;
+            transition: all 0.2s;
+            width: 150px;
+            height: 100px;
+            border-radius: 100% / 80px;
+            background: radial-gradient(50% 40px at 50% 40px, #00000000 99.99%, #00000029 0), radial-gradient(50% 40px at 50% calc(100% - 40px), #ffffff00 99.99%, #00000000 0), #B8860B;
+                box-shadow: #000000dd -5px 7px 15px;
+        }
+
+        /* Efekt wciśnięcia przycisku */
+       .wrap button:active {
+            border-bottom-width: 2px;
+             height: 85px;
+            outline: none;
+        }
+
+        /* Fokus bez obramowania */
+        .wrap button:focus {
+            outline: none;
+        } 
+    .stage {
+      position: relative;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+    }
+
+    /* Delikatna poświata */
+    .glow {
+      position: absolute;
+      width: 360px;
+      height: 360px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(239,68,68,.12), rgba(239,68,68,0) 60%);
+      filter: blur(14px);
+      pointer-events: none;
+      animation: breathe 4s ease-in-out infinite;
+    }
+    @keyframes breathe {
+      0%, 100% { transform: scale(1); opacity: .9; }
+      50% { transform: scale(1.06); opacity: 1; }
+    }
+
+    /* Canvas na eksplozję */
+    canvas#explosion {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+    }
+
+    /* Licznik kliknięć (rogu ekranu) */
+    .counter {
+      position: fixed;
+      top: 14px;
+      right: 16px;
+      padding: 8px 12px;
+      border-radius: 10px;
+      background: rgba(2,6,23,.55);
+      backdrop-filter: blur(6px);
+      font-size: 14px;
+      box-shadow: 0 6px 16px rgba(0,0,0,.25);
+    }
+    .counter strong {
+      color: #fecaca; /* jasny czerwony akcent */
+    }
+
+    .gift-btn #button-text{
+      pointer-events: none;
+    }
+    /* === Styl przycisku jako prezentu === */
+    .gift-btn {
+        background-color: transparent;
+      position: relative;
+      width: 160px;
+      height: 160px;
+      border: none;
+      cursor: pointer;
+      outline: none;
+      border-radius: 18px;
+      /* Czerwono-białe paski: */
+      background-image: url("present.png");
+      background-size: cover;
+      filter: drop-shadow(0 16px 40px rgba(239, 68, 68, .35));
+      transition: transform .18s ease, filter .18s ease;
+      user-select: none;
+      transform-origin: center center;
+    }
+    
+    /* .gift-btn:hover .button_text{
+      color: transparent;
+      animation: none;
+    } */
+    .gift-btn:active {
+      transform: scale(0.98);
+    }
+    .button_text{
+        position: absolute;
+        max-width: 250px;
+        width: 100%;
+        bottom: -50px; 
+        left: 50%; 
+        transform: translate(-50%, 0);
+        color: white;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        transition: all 0.2s;
+        animation: infinite 3s textBlinking;
+    }
+    @keyframes textBlinking {
+        0%{
+            opacity: .9;
+        }
+        50% {
+            opacity: 0.5;
+        }
+        100%{
+            opacity: .9;
+        }
+    }
+
+    /* Ukryty tekst dla dostępności */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+    @media screen and (max-width: 600px){
+      .wrap {
+          width: 335px;
+          height: 494px;
+      }
+      .card--inner h2 {
+    width: 70%;
+    font-size: 15px;
+    text-align: left;
+}
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap" id="wrap">
+        <div class="card card--inner">
+            <h2>Dear Partner,<br><br>
+                Thank you for your collaboration this year. Your partnership has been key to our shared successes.<br>
+                As the holiday season approaches, we wish you joy, peace, and special moments with your loved ones. <br>May the New Year bring health, prosperity, and exciting opportunities to work together.<br><br>
+                Warm regards,<br>
+                Commercial GBS Team<br></h2>
+        </div>
+        <div class="card card--front back" onclick="openCard();"></div>
+        <div class="card card--front" onclick="openCard();">
+            <h2></h2>
+        </div>
+        <button id="card_button" onclick="openCard();">Open Card</button>
+    </div>
+  <div class="stage">
+    <div class="glow" aria-hidden="true"></div>
+
+    <button id="giftBtn" class="gift-btn" aria-label="Kliknij prezent, aby go powiększyć">
+        
+    <p id="button-text" class="button_text">CLICK ME!</p>
+    </button>
+    <canvas id="explosion"></canvas>
+  </div>
+
+  <div class="counter" aria-live="polite" style="visibility: hidden;">
+    Kliknięcia: <strong id="clicks">0</strong> / 20
+  </div>
+
+  <script>
+    const btn = document.getElementById('giftBtn');
+    const btnText = document.getElementById('button-text')
+    const counterEl = document.getElementById('clicks');
+    const canvas = document.getElementById('explosion');
+    const ctx = canvas.getContext('2d');
+    const cardWrapper = document.querySelector('.wrap')
+    const glow = document.querySelector('.glow')
+    
+    const maxClicks = 5;
+    const scaleStep = 0.05; 
+    let clicks = 0;
+    let scale = 1;
+
+    function resizeCanvas() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    function updateButtonScale() {
+      btn.style.transform = `scale(${scale})`;
+    }
+
+    function getButtonCenter() {
+      const rect = btn.getBoundingClientRect();
+      return {
+        x: rect.left + rect.width / 2,
+        y: rect.top + rect.height / 2
+      };
+    }
+
+    btn.addEventListener('click', () => {
+        if(clicks >= 1){
+            btnText.innerText = 'CLICK HARDER!'
+        }
+        if(clicks >= 2){
+            btnText.innerText = 'DO IT AGAIN!'
+        }
+      if (clicks >= maxClicks) return;
+
+      clicks += 1;
+      counterEl.textContent = clicks;
+
+      scale = 1 + scaleStep * clicks;
+      updateButtonScale();
+
+      if (clicks === maxClicks) {
+        explode();
+      }
+    });
+
+    function explode() {
+      btn.style.transition = 'transform .08s ease';
+      btn.style.transform += ' scale(1.06)';
+      setTimeout(() => {
+        btn.style.visibility = 'hidden';
+      }, 100);
+
+      const origin = getButtonCenter();
+      const particles = [];
+      const colors = ['#ffffff', '#ef4444', '#dc2626'];
+
+      const count = 200;
+      for (let i = 0; i < count; i++) {
+        const angle = Math.random() * Math.PI * 2;
+        const speed = 2 + Math.random() * 5;
+        const life = 40 + Math.random() * 55;
+        particles.push({
+          x: origin.x,
+          y: origin.y,
+          vx: Math.cos(angle) * speed,
+          vy: Math.sin(angle) * speed,
+          radius: 2 + Math.random() * 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          life,
+          alpha: 1
+        });
+      }
+
+      const ring = {
+        x: origin.x,
+        y: origin.y,
+        r: 0,
+        maxR: Math.min(canvas.width, canvas.height) * 0.55,
+        alpha: 0.7
+      };
+
+      let flashAlpha = 0.0;
+      let frame = 0;
+
+      function animate() {
+        frame++;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+
+        if (frame < 12) {
+          flashAlpha = Math.max(0, 0.20 - frame * 0.02);
+          ctx.fillStyle = `rgba(255,255,255,${flashAlpha})`;
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+        }
+
+
+        particles.forEach(p => {
+          p.life -= 1;
+          p.alpha = Math.max(0, p.life / 95);
+          p.vy += 0.06;
+          p.x += p.vx;
+          p.y += p.vy;
+
+          ctx.beginPath();
+          ctx.fillStyle = `rgba(${hexToRgb(p.color)}, ${p.alpha.toFixed(3)})`;
+          ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+          ctx.fill();
+        });
+
+ 
+        ring.r += 10;
+        ring.alpha = Math.max(0, ring.alpha - 0.012);
+        ctx.beginPath();
+        ctx.strokeStyle = `rgba(220,38,38,${ring.alpha.toFixed(3)})`; 
+        ctx.lineWidth = 6;
+        ctx.arc(ring.x, ring.y, ring.r, 0, Math.PI * 2);
+        ctx.stroke();
+
+        const alive = particles.some(p => p.life > 0 && p.alpha > 0);
+        if (alive || ring.alpha > 0.02) {
+          requestAnimationFrame(animate);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+
+      animate();
+      cardWrapper.classList.add('wrap_visible')
+      glow.style.visibility = 'hidden'
+      
+    }
+
+    function hexToRgb(hex) {
+      const c = hex.replace('#','');
+      const bigint = parseInt(c, 16);
+      const r = (bigint >> 16) & 255;
+      const g = (bigint >> 8) & 255;
+      const b = bigint & 255;
+      return `${r},${g},${b}`;
+    }
+    
+    function openCard() {
+    var button = document.getElementById('card_button');
+  
+        if(button.innerHTML == 'Open Card') {
+            button.innerHTML = 'Close Card';
+        } else {
+            button.innerHTML = 'Open Card';
+        }
+        function createAudio(){
+        let newAudio = document.createElement("audio")
+        newAudio.src = "sound.mp3";
+        newAudio.preload = "auto"
+        newAudio.className = "audiosong"
+        newAudio.volume = 0.03
+        newAudio.loop = true;
+        document.body.appendChild(newAudio)
+        
+        document.querySelector('.audiosong').play()
+        
+      }
+      createAudio()
+        var cards = document.querySelectorAll('.card');
+        for(var i = 0; i < cards.length; i++) {
+            cards[i].classList.toggle('open');
+        }
+        }
+  </script>
+</body>
+</html>
